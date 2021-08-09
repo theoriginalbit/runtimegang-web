@@ -11,6 +11,8 @@
     <meta property="og:title" content="The Runtime Gang is coming for you" />
     <meta property="og:description" content="The website of The Runtime Gang" />
     <meta property="og:image" content="https://www.runtimegang.com/gang.png" />
+    <meta name="theme-color" content="var(--title-color)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="var(--title-color)" media="(prefers-color-scheme: dark)">
 </head>
 
 <body>
@@ -23,6 +25,78 @@
             <img src="e2e_wave.png" />
         </div>
     </div>
+
+    <script type="text/javascript" charset="utf-8">
+        const rainbowColors = [
+            { r: 255, g: 45, b: 85 },
+            { r: 255, g: 59, b: 48 },
+            { r: 255, g: 149, b: 0 },
+            { r: 255, g: 204, b: 0 },
+            { r: 76, g: 217, b: 100 },
+            { r: 0, g: 122, b: 255 },
+            { r: 88, g: 86, b: 214 }
+        ];
+
+        const paletteSize = rainbowColors.length;
+        const intervalDelay = 1000;
+        const buttomElem = document.querySelector('.hero h1');
+        let cycleIndex = 0;
+
+        lerp = function (a, b, u) {
+            return (1 - u) * a + u * b;
+        };
+
+        fade = function (element, start, end, duration) {
+            var interval = 10;
+            var steps = duration / interval;
+            var step_u = 1.0 / steps;
+            var u = 0.0;
+            var theInterval = setInterval(function () {
+                if (u >= 1.0) { clearInterval(theInterval) }
+                var r = parseInt(lerp(start.r, end.r, u));
+                var g = parseInt(lerp(start.g, end.g, u));
+                var b = parseInt(lerp(start.b, end.b, u));
+                var colorname = 'rgb(' + r + ',' + g + ',' + b + ')';
+                element.style.setProperty('color', colorname);
+                // hello safari 15
+                document.querySelector('meta[name="theme-color"]').setAttribute("content", colorname);
+                u += step_u;
+            }, interval);
+        };
+
+        // infinitely fade
+        window.setInterval(() => {
+            const startColor = rainbowColors[cycleIndex % paletteSize];
+            const endColor = rainbowColors[(cycleIndex + 1) % paletteSize];
+            fade(buttomElem, startColor, endColor, 1000)
+
+            cycleIndex++;
+        }, 1000);
+
+        // set initial color
+        const startColor = rainbowColors[cycleIndex % paletteSize];
+        const endColor = rainbowColors[(cycleIndex + 1) % paletteSize];
+        fade(buttomElem, startColor, endColor, 1000);
+        cycleIndex++;
+    </script>
+    <noscript>
+        <!-- WHO ARE YOU?! -->
+        <style>
+            .hero h1 {
+                animation: color-change 7s infinite;
+            }
+
+            @keyframes color-change {
+                0% { color: #ff2d55 }
+                15% { color: #ff3b30 }
+                30% { color: #ff9500 }
+                45% { color: #ffcc00 }
+                60% { color: #4cd964 }
+                75% { color: #007aff }
+                100% { color: #5856d6 }
+            }
+        </style>
+    </noscript>
 </body>
 
 </html>

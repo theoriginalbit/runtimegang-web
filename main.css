@@ -49,15 +49,4 @@ body {
   margin: 10px;
   text-align: center;
   font-size: 4rem;
-  animation: color-change 7s infinite;
-}
-
-@keyframes color-change {
-    0% { color: #ff2d55}
-    15% { color: #ff3b30}
-    30% { color: #ff9500}
-    45% { color: #ffcc00}
-    60% { color: #4cd964}
-    75% { color: #007aff}
-    100% { color: #5856d6}
 }
