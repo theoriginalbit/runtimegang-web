@@ -39,7 +39,7 @@
 
         const paletteSize = rainbowColors.length;
         const intervalDelay = 1000;
-        const buttomElem = document.querySelector('.hero h1');
+        const buttomElem = document.querySelector('body');
         let cycleIndex = 0;
 
         lerp = function (a, b, u) {
@@ -57,7 +57,7 @@
                 var g = parseInt(lerp(start.g, end.g, u));
                 var b = parseInt(lerp(start.b, end.b, u));
                 var colorname = 'rgb(' + r + ',' + g + ',' + b + ')';
-                element.style.setProperty('color', colorname);
+                element.style.setProperty('background-color', colorname);
                 // hello safari 15
                 document.querySelector('meta[name="theme-color"]').setAttribute("content", colorname);
                 u += step_u;
