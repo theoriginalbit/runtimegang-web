@@ -24,7 +24,7 @@ body {
   background: var(--background-color);
   text-rendering: optimizelegibility;
   -webkit-text-size-adjust: none;
-  height: 100%;
+  margin: 0;
 }
 
 .hero {
@@ -34,18 +34,19 @@ body {
 
 .hero .content {
   display: flex;
-  justify-content: center;
-  align-content: center;
   align-items: center;
-  height: 600px;
+  justify-content: center;
+  height: 70vmin;
+  flex-wrap: wrap;
 }
 
 .hero img {
   height: 100%;
+  margin: 5px;
 }
 
 .hero h1 {
-  margin-right: 0;
+  margin: 10px;
   text-align: center;
   font-size: 4rem;
   animation: color-change 7s infinite;
